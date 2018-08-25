@@ -20,7 +20,10 @@ class CategoryController extends Controller
 
           $data = Blog::where('category_id', $category->id)->get();
 
-          return view('blogs', ['data' => $data]);
+          return view('blogs', [
+            'data' => $data,
+            'categories' => Category::all()
+          ]);
 
 
 
