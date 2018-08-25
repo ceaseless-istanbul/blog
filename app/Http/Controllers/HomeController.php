@@ -1,21 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Category;
 
 class HomeController extends Controller
 {
+    public function index()
+    {
+        $data = [
+          'categories' => Category::all()
+        ];
 
-  function homepage()
-  {
-      $data = [
-        'date' => 'today '.date('Y-m-d H:i:s'),
-        'name' => 'ahmed',
-        'age' => 18,
-        'categories' => Category::all()
-      ];
-
-      return view('welcome', $data);
-  }
-
+        return view('welcome', $data);
+    }
 }
