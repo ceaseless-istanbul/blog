@@ -8,6 +8,7 @@
               <div class="card-header">Categories</div>
 
               <div class="card-body">
+                  <a href="{{route('c_panel_categories_create')}}" class="btn btn-primary">Create</a>
                   <table class="table table-bordered">
                       <thead>
                           <tr>

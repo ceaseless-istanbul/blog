@@ -43,4 +43,22 @@ class CategoryController extends Controller
         return view('admin.categories.list', ['data' => $data]);
     }
 
+
+    function create()
+    {
+      return view('admin.categories.create');
+    }
+
+    function add(Request $request)
+    {
+      $name = $request->input('name');
+      $slug = $request->input('slug');
+
+
+      $category = new Category();
+      $category->name = $name;
+      $category->slug = $slug;
+
+      $category->save();
+    }
 }
