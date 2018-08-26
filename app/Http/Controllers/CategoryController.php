@@ -35,4 +35,12 @@ class CategoryController extends Controller
 
     }
 
+
+    function getList()
+    {
+        $data = Category::all();
+
+        return view('admin.categories.list', ['data' => $data]);
+    }
+
 }

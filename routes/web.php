@@ -10,6 +10,19 @@ Route::get('/category/{slug}', 'CategoryController@index')->name('view_category'
 
 Auth::routes();
 
-Route::get('c_panel', 'ControlPanelController@index')
-      ->name('c_panel')
-      ->middleware('auth');
+
+Route::middleware(['auth'])->prefix('c_panel')->group(function () {
+
+    Route::get('', 'ControlPanelController@index')->name('c_panel');
+
+    Route::get('/categories', 'CategoryController@getList')->name('c_panel_categories_list');
+
+    Route::get('/categories/create', 'CategoryController@create')->name('c_panel_categories_create');
+    Route::post('/categories', 'CategoryController@add')->name('c_panel_categories_add');
+
+    Route::get('/categories/{id}', 'CategoryController@update')->name('c_panel_categories_update');
+    Route::put('/categories/{id}', 'CategoryController@edit')->name('c_panel_categories_edit');
+
+    Route::delete('/categories/{id}', 'CategoryController@delete')->name('c_panel_categories_delete');
+
+});
