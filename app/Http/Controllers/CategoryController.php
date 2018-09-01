@@ -51,14 +51,70 @@ class CategoryController extends Controller
 
     function add(Request $request)
     {
+      $data = $request->all();
+
       $name = $request->input('name');
       $slug = $request->input('slug');
 
-
       $category = new Category();
+
       $category->name = $name;
       $category->slug = $slug;
 
       $category->save();
+
+      return response()->json([
+          'id' => $category->id
+      ]);
+
     }
+
+
+    function delete(Request $request)
+    {
+
+      $id = $request->input('id');
+
+      $category = Category::find($id);
+
+      $category->delete();
+
+      return response()->json([
+          'success' => true
+      ]);
+
+
+    }
+
+
+    function update($id)
+    {
+      $category = Category::find($id);
+
+      return view('admin.categories.update', [
+        'data' => $category
+      ]);
+    }
+
+
+    function edit(Request $request)
+    {
+
+      $id = $request->input('id');
+      $name = $request->input('name');
+      $slug = $request->input('slug');
+
+      $category = Category::find($id);
+
+      $category->name = $name;
+      $category->slug = $slug;
+
+      $category->save();
+
+      return response()->json([
+          'success' => true
+      ]);
+
+    }
+
 }

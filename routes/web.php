@@ -21,8 +21,8 @@ Route::middleware(['auth'])->prefix('c_panel')->group(function () {
     Route::post('/categories', 'CategoryController@add')->name('c_panel_categories_add');
 
     Route::get('/categories/{id}', 'CategoryController@update')->name('c_panel_categories_update');
-    Route::put('/categories/{id}', 'CategoryController@edit')->name('c_panel_categories_edit');
+    Route::put('/categories', 'CategoryController@edit')->name('c_panel_categories_edit');
 
-    Route::delete('/categories/{id}', 'CategoryController@delete')->name('c_panel_categories_delete');
+    Route::delete('/categories', 'CategoryController@delete')->name('c_panel_categories_delete');
 
 });

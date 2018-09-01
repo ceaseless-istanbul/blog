@@ -41,7 +41,12 @@
         },
         dataType: 'json',
         success: function(response) {
-          alert(response);
+
+          if(response.id) {
+            alert('added successfully');
+            window.location.href = '{{route('c_panel_categories_list')}}';
+          }
+
         }
       });
 

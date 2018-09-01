@@ -24,7 +24,7 @@
                                   <td>{{$category->slug}}</td>
                                   <td>
                                       <a href="{{route('c_panel_categories_update', $category->id)}}" class="btn btn-info">Edit</a>
-                                      <button type="button" class="btn btn-danger">Delete</button>
+                                      <button type="button" class="btn btn-danger" onclick="deleteCat({{$category->id}})">Delete</button>
                                   </td>
                               </tr>
                           @endforeach
@@ -35,4 +35,31 @@
         </div>
     </div>
 </div>
+
+<script>
+
+  function deleteCat(id)
+  {
+      $.ajax({
+          url: '{{route('c_panel_categories_delete')}}',
+          method: 'delete',
+          data: {
+              id: id,
+              _token: '{{ csrf_token() }}'
+          },
+          dataType: 'json',
+          success: function(response) {
+
+              if(response.success)
+              {
+                  alert('deleted');
+                  window.location.href = '{{route('c_panel_categories_list')}}';
+              }
+
+          }
+      });
+
+  }
+
+</script>
 @endsection
